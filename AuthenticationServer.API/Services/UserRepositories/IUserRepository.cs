@@ -13,5 +13,7 @@ namespace AuthenticationServer.API.Services.UserRepositories
         Task<User> GetByUsername(string username);
 
         Task<User> Create(User user);
+
+        Task<User> GetById(Guid userId);
     }
 }

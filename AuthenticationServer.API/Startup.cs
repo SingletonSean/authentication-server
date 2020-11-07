@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AuthenticationServer.API.Models;
+using AuthenticationServer.API.Services.Authenticators;
 using AuthenticationServer.API.Services.PasswordHashers;
+using AuthenticationServer.API.Services.RefreshTokenRepositories;
 using AuthenticationServer.API.Services.TokenGenerators;
+using AuthenticationServer.API.Services.TokenValidators;
 using AuthenticationServer.API.Services.UserRepositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,8 +36,13 @@ namespace AuthenticationServer.API
             services.AddSingleton(authenticationConfiguration);
 
             services.AddSingleton<AccessTokenGenerator>();
+            services.AddSingleton<RefreshTokenGenerator>();
+            services.AddSingleton<RefreshTokenValidator>();
+            services.AddSingleton<Authenticator>();
+            services.AddSingleton<TokenGenerator>();
             services.AddSingleton<IPasswordHasher, BcryptPasswordHasher>();
             services.AddSingleton<IUserRepository, InMemoryUserRepository>();
+            services.AddSingleton<IRefreshTokenRepository, InMemoryRefreshTokenRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

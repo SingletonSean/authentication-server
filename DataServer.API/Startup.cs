@@ -41,7 +41,8 @@ namespace DataServer.API
                     ValidAudience = authenticationConfiguration.Audience,
                     ValidateIssuerSigningKey = true,
                     ValidateIssuer = true,
-                    ValidateAudience = true
+                    ValidateAudience = true,
+                    ClockSkew = TimeSpan.Zero
                 };
             });
         }
