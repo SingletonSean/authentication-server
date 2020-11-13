@@ -13,5 +13,7 @@ namespace AuthenticationServer.API.Services.RefreshTokenRepositories
         Task Create(RefreshToken refreshToken);
 
         Task Delete(Guid id);
+
+        Task DeleteAll(Guid userId);
     }
 }
