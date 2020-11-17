@@ -10,6 +10,8 @@ using AuthenticationServer.API.Services.RefreshTokenRepositories;
 using AuthenticationServer.API.Services.TokenGenerators;
 using AuthenticationServer.API.Services.TokenValidators;
 using AuthenticationServer.API.Services.UserRepositories;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +38,12 @@ namespace AuthenticationServer.API
 
             AuthenticationConfiguration authenticationConfiguration = new AuthenticationConfiguration();
             _configuration.Bind("Authentication", authenticationConfiguration);
+
+            SecretClient keyVaultClient = new SecretClient(
+                new Uri(_configuration.GetValue<string>("KeyVaultUri")),
+                new DefaultAzureCredential());
+            authenticationConfiguration.AccessTokenSecret = keyVaultClient.GetSecret("access-token-secret").Value.Value;
+
             services.AddSingleton(authenticationConfiguration);
 
             services.AddSingleton<AccessTokenGenerator>();

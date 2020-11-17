@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +34,12 @@ namespace DataServer.API
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(o =>
             {
                 AuthenticationConfiguration authenticationConfiguration = new AuthenticationConfiguration();
+
+                SecretClient keyVaultClient = new SecretClient(
+                    new Uri(Configuration.GetValue<string>("KeyVaultUri")),
+                    new DefaultAzureCredential());
+                authenticationConfiguration.AccessTokenSecret = keyVaultClient.GetSecret("access-token-secret").Value.Value;
+
                 Configuration.Bind("Authentication", authenticationConfiguration);
 
                 o.TokenValidationParameters = new TokenValidationParameters()
