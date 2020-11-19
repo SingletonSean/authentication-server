@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -46,14 +47,17 @@ namespace AuthenticationServer.API
 
             services.AddSingleton(authenticationConfiguration);
 
+            string connectionString = _configuration.GetConnectionString("sqlite");
+            services.AddDbContext<AuthenticationDbContext>(o => o.UseSqlite(connectionString));
+
             services.AddSingleton<AccessTokenGenerator>();
             services.AddSingleton<RefreshTokenGenerator>();
             services.AddSingleton<RefreshTokenValidator>();
-            services.AddSingleton<Authenticator>();
+            services.AddScoped<Authenticator>();
             services.AddSingleton<TokenGenerator>();
             services.AddSingleton<IPasswordHasher, BcryptPasswordHasher>();
-            services.AddSingleton<IUserRepository, InMemoryUserRepository>();
-            services.AddSingleton<IRefreshTokenRepository, InMemoryRefreshTokenRepository>();
+            services.AddScoped<IUserRepository, DatabaseUserRepository>();
+            services.AddScoped<IRefreshTokenRepository, DatabaseRefreshTokenRepository>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(o =>
             {
