@@ -19,11 +19,13 @@ namespace AuthenticationServer.API.Services.TokenGenerators
 
         public string GenerateToken()
         {
+            DateTime expirationTime = DateTime.UtcNow.AddMinutes(_configuration.RefreshTokenExpirationMinutes);
+
             return _tokenGenerator.GenerateToken(
                 _configuration.RefreshTokenSecret,
                 _configuration.Issuer,
                 _configuration.Audience,
-                _configuration.RefreshTokenExpirationMinutes);
+                expirationTime);
         }
     }
 }

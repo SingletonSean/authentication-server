@@ -21,7 +21,7 @@ namespace AuthenticationServer.API.Services.TokenGenerators
             _tokenGenerator = tokenGenerator;
         }
 
-        public string GenerateToken(User user)
+        public AccessToken GenerateToken(User user)
         {
             List<Claim> claims = new List<Claim>()
             {
@@ -30,12 +30,19 @@ namespace AuthenticationServer.API.Services.TokenGenerators
                 new Claim(ClaimTypes.Name, user.UserName),
             };
 
-            return _tokenGenerator.GenerateToken(
+            DateTime expirationTime = DateTime.UtcNow.AddMinutes(_configuration.AccessTokenExpirationMinutes);
+            string value = _tokenGenerator.GenerateToken(
                 _configuration.AccessTokenSecret,
                 _configuration.Issuer,
                 _configuration.Audience,
-                _configuration.AccessTokenExpirationMinutes,
+                expirationTime,
                 claims);
+
+            return new AccessToken()
+            {
+                Value = value,
+                ExpirationTime = expirationTime
+            };
         }
     }
 }

@@ -44,10 +44,10 @@ namespace AuthenticationServer.API
             AuthenticationConfiguration authenticationConfiguration = new AuthenticationConfiguration();
             _configuration.Bind("Authentication", authenticationConfiguration);
 
-            SecretClient keyVaultClient = new SecretClient(
-                new Uri(_configuration.GetValue<string>("KeyVaultUri")),
-                new DefaultAzureCredential());
-            authenticationConfiguration.AccessTokenSecret = keyVaultClient.GetSecret("access-token-secret").Value.Value;
+            //SecretClient keyVaultClient = new SecretClient(
+            //    new Uri(_configuration.GetValue<string>("KeyVaultUri")),
+            //    new DefaultAzureCredential());
+            //authenticationConfiguration.AccessTokenSecret = keyVaultClient.GetSecret("access-token-secret").Value.Value;
 
             services.AddSingleton(authenticationConfiguration);
 

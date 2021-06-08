@@ -11,7 +11,7 @@ namespace AuthenticationServer.API.Services.TokenGenerators
 {
     public class TokenGenerator
     {
-        public string GenerateToken(string secretKey, string issuer, string audience, double expirationMinutes, 
+        public string GenerateToken(string secretKey, string issuer, string audience, DateTime utcExpirationTime, 
             IEnumerable<Claim> claims = null)
         {
             SecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
@@ -22,7 +22,7 @@ namespace AuthenticationServer.API.Services.TokenGenerators
                 audience,
                 claims,
                 DateTime.UtcNow,
-                DateTime.UtcNow.AddMinutes(expirationMinutes),
+                utcExpirationTime,
                 credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

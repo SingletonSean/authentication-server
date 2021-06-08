@@ -26,7 +26,7 @@ namespace AuthenticationServer.API.Services.Authenticators
 
         public async Task<AuthenticatedUserResponse> Authenticate(User user)
         {
-            string accessToken = _accessTokenGenerator.GenerateToken(user);
+            AccessToken accessToken = _accessTokenGenerator.GenerateToken(user);
             string refreshToken = _refreshTokenGenerator.GenerateToken();
 
             RefreshToken refreshTokenDTO = new RefreshToken()
@@ -38,7 +38,8 @@ namespace AuthenticationServer.API.Services.Authenticators
 
             return new AuthenticatedUserResponse()
             {
-                AccessToken = accessToken,
+                AccessToken = accessToken.Value,
+                AccessTokenExpirationTime = accessToken.ExpirationTime,
                 RefreshToken = refreshToken
             };
         }

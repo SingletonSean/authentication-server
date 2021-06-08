@@ -35,10 +35,10 @@ namespace DataServer.API
             {
                 AuthenticationConfiguration authenticationConfiguration = new AuthenticationConfiguration();
 
-                SecretClient keyVaultClient = new SecretClient(
-                    new Uri(Configuration.GetValue<string>("KeyVaultUri")),
-                    new DefaultAzureCredential());
-                authenticationConfiguration.AccessTokenSecret = keyVaultClient.GetSecret("access-token-secret").Value.Value;
+                //SecretClient keyVaultClient = new SecretClient(
+                //    new Uri(Configuration.GetValue<string>("KeyVaultUri")),
+                //    new DefaultAzureCredential());
+                //authenticationConfiguration.AccessTokenSecret = keyVaultClient.GetSecret("access-token-secret").Value.Value;
 
                 Configuration.Bind("Authentication", authenticationConfiguration);
 

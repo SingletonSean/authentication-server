@@ -10,6 +10,11 @@ namespace DataServer.API.Controllers
 {
     public class HomeController : Controller
     {
+        private class DataResponse
+        {
+            public string Value { get; set; }
+        }
+
         [Authorize]
         [HttpGet("data")]
         public IActionResult Index()
@@ -18,7 +23,10 @@ namespace DataServer.API.Controllers
             string email = HttpContext.User.FindFirstValue(ClaimTypes.Email);
             string username = HttpContext.User.FindFirstValue(ClaimTypes.Name);
 
-            return Ok();
+            return Ok(new DataResponse
+            {
+                Value = "123"
+            });
         }
     }
 }
