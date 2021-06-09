@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AuthenticationServer.API.Models.Requests
+namespace CoreLib.Requests
 {
     public class RegisterRequest
     {

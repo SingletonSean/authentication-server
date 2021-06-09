@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AuthenticationServer.API.Models.Responses
+namespace CoreLib.Responses
 {
     public class ErrorResponse
     {
         public IEnumerable<string> ErrorMessages { get; set; }
+
+        public ErrorResponse() : this(new List<string>()) { }
 
         public ErrorResponse(string errorMessage) : this(new List<string>() { errorMessage }) { }
 

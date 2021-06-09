@@ -1,10 +1,7 @@
 ﻿using AuthenticationServer.API.Models;
-using AuthenticationServer.API.Models.Responses;
 using AuthenticationServer.API.Services.RefreshTokenRepositories;
 using AuthenticationServer.API.Services.TokenGenerators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using CoreLib.Responses;
 using System.Threading.Tasks;
 
 namespace AuthenticationServer.API.Services.Authenticators

@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationServer.API", "AuthenticationServer.API\AuthenticationServer.API.csproj", "{57C0E66F-A1B6-4EFB-884E-64514F01E2CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataServer.API", "DataServer.API\DataServer.API.csproj", "{50E31A1D-389B-4252-BD1E-BFD5EC0523E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataServer.API", "DataServer.API\DataServer.API.csproj", "{50E31A1D-389B-4252-BD1E-BFD5EC0523E0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientApplication", "ClientApplication\ClientApplication.csproj", "{DD4F220E-C0FB-463C-9710-5C5182ABB872}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreLib", "Core\CoreLib.csproj", "{820B0153-643F-4123-8A37-11A73BEEA9C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{50E31A1D-389B-4252-BD1E-BFD5EC0523E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50E31A1D-389B-4252-BD1E-BFD5EC0523E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50E31A1D-389B-4252-BD1E-BFD5EC0523E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD4F220E-C0FB-463C-9710-5C5182ABB872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD4F220E-C0FB-463C-9710-5C5182ABB872}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD4F220E-C0FB-463C-9710-5C5182ABB872}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD4F220E-C0FB-463C-9710-5C5182ABB872}.Release|Any CPU.Build.0 = Release|Any CPU
+		{820B0153-643F-4123-8A37-11A73BEEA9C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{820B0153-643F-4123-8A37-11A73BEEA9C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{820B0153-643F-4123-8A37-11A73BEEA9C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{820B0153-643F-4123-8A37-11A73BEEA9C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

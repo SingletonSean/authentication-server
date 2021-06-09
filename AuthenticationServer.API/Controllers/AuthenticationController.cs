@@ -1,9 +1,9 @@
 ﻿using AuthenticationServer.API.Models;
-using AuthenticationServer.API.Models.Requests;
-using AuthenticationServer.API.Models.Responses;
 using AuthenticationServer.API.Services.Authenticators;
 using AuthenticationServer.API.Services.RefreshTokenRepositories;
 using AuthenticationServer.API.Services.TokenValidators;
+using CoreLib.Requests;
+using CoreLib.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
